@@ -59,6 +59,7 @@ int main(int argc, char** argv) {
         }
         r++;
     }
-
+    
+    printRes(results, (argc/3-1));
     return 0;
 }
