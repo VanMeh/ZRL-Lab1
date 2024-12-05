@@ -7,8 +7,8 @@
 
 
 int main(int argc, char** argv) {
-    int k = -1;
-    char *locale = setlocale(LC_ALL, "Rus");
+    long k = -1;
+    char* end;
     //Checks
     if(argc%3) {
         printf("Incorrect number of arguments\n");
@@ -16,7 +16,11 @@ int main(int argc, char** argv) {
     }
     for(int i = 1; i < argc; i++) {
         if(strstr(argv[i], "-k") != 0) {
-            k = atoi(argv[i+1]);
+            k = strtol(argv[i+1], &end, 10);
+            if(end == argv[i+1] || *end != '\0') {
+                printf("Incorrect value of k");
+                return 1;
+            }
         }
     }
     if(k == -1) {
@@ -59,7 +63,8 @@ int main(int argc, char** argv) {
         }
         r++;
     }
-    
+
     printRes(results, (argc/3-1));
+    decrypt(results, (argc/3-1), k);
     return 0;
 }
