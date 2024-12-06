@@ -12,12 +12,12 @@ output/lab1: $(OBJS)
 	$(CC) -o $@ $^
 
 output/%.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c -o $@ $< 
+	$(CC) $(CFLAGS) -o $@ $< 
 
 clean:
-	rm -f *.c *.o all
+	rm -f $(OBJS) $(OUT)
 
 run: output/lab1
 	make clean
 	make
-	./output/lab1 $(ARGUM)
+	./output/lab1 $(ARG)

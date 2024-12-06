@@ -34,14 +34,18 @@ int main(int argc, char** argv) {
     for(int i = 1; i < argc-2; i = i+3) {
         int a1, a2;
         char operator;
-        a1 = atoi(argv[i]);
-        a2 = atoi(argv[i+2]);
-        operator = *argv[i+1];
-
-        if(a1==0 || a2 == 0) {
-            printf("Incorrect operand\n");
+        a1 = strtol(argv[i], &end, 10);
+        if(end == argv[i] || *end != '\0') {
+            printf("Incorrect operand");
             return 1;
         }
+        a2 = strtol(argv[i+2], &end, 10);
+        if(end == argv[i+2] || *end != '\0') {
+            printf("Incorrect operand");
+            return 1;
+        }
+        operator = *argv[i+1];
+
 
         switch (operator) {
         case '+':
